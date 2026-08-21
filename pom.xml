@@ -14,4 +14,31 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- 1. Сама библиотека Selenium Java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.27.0</version>
+        </dependency>
+
+        <!-- 2. TestNG (фреймворк для запуска тестов) -->
+        <!-- Если ваш код помечен аннотацией @Test, вам обязательно нужно это -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 3. WebDriverManager (спасет вас от мук с драйверами браузеров) -->
+        <!-- Эта библиотека сама скачивает chromedriver/geckodriver под вашу версию Chrome -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
 </project>
