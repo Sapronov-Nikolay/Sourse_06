@@ -1,13 +1,12 @@
 📁 Sourse_06/
-📊 Итог: Папок: 11, Файлов: 6, Уровней вложенности: 6
+📊 Итог: Папок: 11, Файлов: 5, Уровней вложенности: 6
 
 ├── pom.xml
-├── pom.xml.versionsBackup
 ├── tree.txt
 ├── src
 │   └── test
 │       └── java
-│           └── FirstTest
+│           └── FirstTest.java
 └── target
     ├── generated-test-sources
     │   └── test-annotations
