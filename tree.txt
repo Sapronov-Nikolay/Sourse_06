@@ -1,8 +1,20 @@
 📁 Sourse_06/
-📊 Итог: Папок: 3, Файлов: 2, Уровней вложенности: 4
+📊 Итог: Папок: 11, Файлов: 6, Уровней вложенности: 6
 
 ├── pom.xml
-└── src
-    └── test
-        └── java
-            └── FirstTest
+├── pom.xml.versionsBackup
+├── tree.txt
+├── src
+│   └── test
+│       └── java
+│           └── FirstTest
+└── target
+    ├── generated-test-sources
+    │   └── test-annotations
+    ├── maven-status
+    │   └── maven-compiler-plugin
+    │       └── testCompile
+    │           └── default-testCompile
+    │               ├── createdFiles.lst
+    │               └── inputFiles.lst
+    └── test-classes
