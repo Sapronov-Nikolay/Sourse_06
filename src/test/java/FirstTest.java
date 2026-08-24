@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,32 +13,35 @@ public class FirstTest {
     public void LockedOutUserTest() {
         // 1. Создаём экземпляр браузера (открываем окошко Chrome)
         // В Python это: driver = Chrome()
-        WebDriver browser = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
 
         // 2. Переходим на страницу целевого сайта.
         // Аналог в Python: driver.get("https://www.saucedemo.com/")
-        browser.get("https://www.saucedemo.com/");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        driver = new ChromeDriver(options);
+        driver.get("https://www.saucedemo.com/");
 
         // 3. вводим логин заведомо неправильный логин пользователя
         // findElement(By.id(...)) - находим элемент по его id.
         // sendKeys(...) - вводим текст в поле
         // Аналог в Python: driver.find_element(By.ID, "user_name").send_keys("locked_out_user")
-        browser.findElement(By.id("user-name")).sendKeys("locked_out_user");
+        driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
 
         // 4. Вводим верный пароль.
-        browser.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
 
         // 5. Нажимаем кнопку ввода.
         // click() - эмулирует реальный клик мышкой - (по умолчанию левой кнопки мыши)
         // Аналог в Python: driver.find_element(By.ID, "login-button").click()
-        browser.findElement(By.id("login-button")).click();
+        driver.findElement(By.id("login-button")).click();
 
         // 6. Ищем элемент с сообщением об ошибке.
         // В вёрстке используется CSS-селектор по атрибуту data-test="error"
         // Это часто надёжно, так как такие селектора редко меняются при правке вёрстки
         // Квадратные скобки означают, что ищем атрибут.
         // Аналог в Python: By.CSS_SELECTOR, "[data-test='error']"
-        WebElement errorMessage = browser.findElement(By.cssSelector("[data-test='error']"));
+        WebElement errorMessage = driver.findElement(By.cssSelector("[data-test='error']"));
 
         // 7. Проверяем, виден ли элемент на экране.
         // isDisplayed() возвращает true, если элемент есть и он видим пользователю.
@@ -68,6 +72,6 @@ public class FirstTest {
         // quit() полностью закрывает браузер и все его окна, освобождает ресурсы.
         // Если забыть эту строчку, процессы Chrome останутся висеть в фоне и быстро съедят всю память.
         // Аналог в Python: driver.quit()
-        browser.quit();
+        driver.quit();
     }
 }
