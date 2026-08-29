@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Базовый класс для всех тестов.
@@ -81,8 +83,14 @@ public abstract class BaseTest {
                 screenshotsDir.mkdirs();
             }
 
+            // 4. Код даты в читабельном формате
+            // Создаем "форматтер", который превращает время в строку нужного вида.
+            //  dd - день, MM - месяц, yyyy - год, HH - часы, mm - минуты, ss - секунды.
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH.mm.ss");
+            // Получаем текущую дату и время и сразу форматируем её в строку по шаблону
+            String timeStamp = LocalDateTime.now().format(formatter);
             // 4. Копируем файл с именем теста и временем (чтобы не пересохранять)
-            File destFile = new File(screenshotsDir, testName + "_" + System.currentTimeMillis() + ".png");
+            File destFile = new File(screenshotsDir, testName + "_" + timeStamp + ".png");
             Files.copy(srcFile.toPath(), destFile.toPath());
 
             // 5. Выводим в консоль сообщения
