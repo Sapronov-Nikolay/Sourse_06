@@ -63,7 +63,7 @@ public class LoginNegativeTests extends BaseTest {
         }
 
         // -------------------------------------------------------------------------
-        // ТЕСТ 3: Ну дачный вход: верный логин → неверный пароль
+        // ТЕСТ 3: Неудачный вход: верный логин → неверный пароль
         // -------------------------------------------------------------------------
         @Test
         public void invalidCredentialsTest() {
@@ -71,6 +71,26 @@ public class LoginNegativeTests extends BaseTest {
 
                 // Шаг 1. Вводим корректный логин, но неправильный пароль
                 loginPage.login("standard_user", "wrong_password");
+
+                // Шаг 2. Проверяем, что ошибка появилась
+                Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Ошибка не появилась на экране");
+
+                // Шаг 3. Проверяем, что текст ошибки сообщает о неверных данных
+                Assert.assertEquals(loginPage.getErrorMessageText(),
+                        "Epic sadface: Username and password do not match any user in this service",
+                        "Текст ошибки не совпал"
+                );
+        }
+
+        // -------------------------------------------------------------------------
+        // ТЕСТ 4: Все поля неверные: неверный логин и неверный пароль.
+        // -------------------------------------------------------------------------
+        @Test
+        public void allFieldsInvalidTest() {
+                loginPage = new LoginPage(driver);
+
+                // Шаг 1. Вводим неправильный логин, но неправильный пароль
+                loginPage.login("invalid", "invalidPassword");
 
                 // Шаг 2. Проверяем, что ошибка появилась
                 Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Ошибка не появилась на экране");
