@@ -14,3 +14,10 @@ pom.xml.versionsBackup
 
 # Кэши и временные папки VS Code (если используете)
 .vscode/
+
+# Папка со скриншотами
+screenshots/
+
+# Результаты тестов Allure (создаются при запуске)
+allure-results/
+allure-report/
