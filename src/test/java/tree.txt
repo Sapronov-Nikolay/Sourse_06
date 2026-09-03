@@ -1,7 +1,0 @@
-📁 java/
-📊 Итог: Папок: 0, Файлов: 4, Уровней вложенности: 1
-
-├── BaseTest.java
-├── LoginNegativeTests.java
-├── LoginPage.java
-└── LoginPositiveTests.java
