@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
  */
 public class LoginNegativeTests extends BaseTest {
 
-        /** Переменная, которая будет хранить экземпляр класса страницы логина */
         private LoginPage loginPage;
 
         // -------------------------------------------------------------------------
@@ -21,20 +20,9 @@ public class LoginNegativeTests extends BaseTest {
         // -------------------------------------------------------------------------
         @Test
         public void lockedOutUserTest() {
-                // Создаём объект страницы, передавая в него драйвер из базового файла BaseTest
                 loginPage = new LoginPage(driver);
-
-                // Шаг 1. Вводим логин и пароль, нажимаем кнопку входа
-                // Всё это делает SMART-METHOD login() внутри страницы
                 loginPage.login("locked_out_user", "secret_sauce");
-
-                // Шаг 2. Проверяем, что элемент с ошибкой виден на экране
-                // Если isErrorMessageDisplayed() вернёт false, тест упадёт с сообщением,
-                // которое тут передано вторым аргументом
                 Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Ошибка не появилась в поле, где должна была быть");
-
-                // Шаг 3. Проверяем точный текст ошибки
-                // assertEquals(фактическое, ожидаемое, сообщение при падении)
                 Assert.assertEquals(loginPage.getErrorMessageText(),
                         "Epic sadface: Sorry, this user has been locked out.",
                         "Текст ошибки не совпал"
@@ -47,15 +35,8 @@ public class LoginNegativeTests extends BaseTest {
         @Test
         public void emptyFieldsTest() {
                 loginPage = new LoginPage(driver);
-
-                // Шаг 1. Находим кнопку входа, ничего не вводя.
-                // Это проверяет, что сайт корректно обрабатывает пустые формы.
                 loginPage.clickLoginButton();
-
-                // Шаг 2. Проверяем, что ошибка появилась
                 Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Ошибка не появилась на экране");
-
-                // Шаг 3. Проверяем, что текст ошибки конкретный про пустые поля.
                 Assert.assertEquals(loginPage.getErrorMessageText(),
                         "Epic sadface: Username is required",
                         "Текст ошибки не совпал"
@@ -68,14 +49,8 @@ public class LoginNegativeTests extends BaseTest {
         @Test
         public void invalidCredentialsTest() {
                 loginPage = new LoginPage(driver);
-
-                // Шаг 1. Вводим корректный логин, но неправильный пароль
                 loginPage.login("standard_user", "wrong_password");
-
-                // Шаг 2. Проверяем, что ошибка появилась
                 Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Ошибка не появилась на экране");
-
-                // Шаг 3. Проверяем, что текст ошибки сообщает о неверных данных
                 Assert.assertEquals(loginPage.getErrorMessageText(),
                         "Epic sadface: Username and password do not match any user in this service",
                         "Текст ошибки не совпал"
@@ -88,14 +63,8 @@ public class LoginNegativeTests extends BaseTest {
         @Test
         public void allFieldsInvalidTest() {
                 loginPage = new LoginPage(driver);
-
-                // Шаг 1. Вводим неправильный логин, но неправильный пароль
                 loginPage.login("invalid", "invalidPassword");
-
-                // Шаг 2. Проверяем, что ошибка появилась
                 Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Ошибка не появилась на экране");
-
-                // Шаг 3. Проверяем, что текст ошибки сообщает о неверных данных
                 Assert.assertEquals(loginPage.getErrorMessageText(),
                         "Epic sadface: Username and password do not match any user in this service",
                         "Текст ошибки не совпал"
