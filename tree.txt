@@ -1,0 +1,39 @@
+📁 Sourse_06/
+📊 Итог: Папок: 10, Файлов: 26, Уровней вложенности: 5
+
+├── pom.xml
+├── src
+│   └── test
+│       ├── java
+│       │   ├── enums
+│       │   │   ├── TitleNaming.java
+│       │   │   └── mkdir
+│       │   ├── locators
+│       │   │   ├── CartPageLocators.java
+│       │   │   ├── CheckoutPageLocators.java
+│       │   │   ├── LoginPageLocators.java
+│       │   │   └── ProductsPageLocators.java
+│       │   ├── pages
+│       │   │   ├── BasePage.java
+│       │   │   ├── CartPage.java
+│       │   │   ├── CheckoutPage.java
+│       │   │   ├── LoginPage.java
+│       │   │   └── ProductsPage.java
+│       │   ├── tests
+│       │   │   ├── BaseTest.java
+│       │   │   ├── CartTest.java
+│       │   │   ├── LoginNegativeTests.java
+│       │   │   ├── LoginPositiveTests.java
+│       │   │   └── ProductsTest.java
+│       │   ├── user
+│       │   │   ├── User.java
+│       │   │   └── UserFactory.java
+│       │   └── utils
+│       │       └── PropertyReader.java
+│       └── resources
+│           ├── config.properties
+│           ├── cross_browser.xml
+│           ├── smoke_tests.xml
+│           └── testng.xml
+├── testng.xml
+└── tree.txt
