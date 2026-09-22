@@ -14,7 +14,7 @@ import pages.ProductsPage;
 @Feature("Страница товаров")
 public class ProductsTest extends BaseTest {
     
-    @Test(description = "Добавление товара вкорзину увеличивает счётчик")
+    @Test(description = "Добавление товара в корзину увеличивает счётчик", priority = 1)
     @Story("Добавление товара в корзину")
     @Severity(SeverityLevel.BLOCKER)
     public void addProductToCartTest() {
@@ -24,5 +24,20 @@ public class ProductsTest extends BaseTest {
         productsPage.addToCart("sauce-labs-backpack");
         
         Assert.assertEquals(productsPage.getCartBadgeCount(), 1, "В корзине должен быть 1 товар");
+    }
+    
+    @Test(description = "Удаление товара из корзины уменьшает счётчик", priority = 2)
+    @Story("Удаление товара из корзины")
+    @Severity(SeverityLevel.NORMAL)
+    public void removeProductFromCartTest() {
+        loginAsStandardUser();
+        
+        ProductsPage productsPage = new ProductsPage(driver);
+        // Сначала добавлением - чтобы кнопка "Add to cart" сменилась на "Remove"
+        productsPage.addToCart("sauce-labs-backpack");
+        Assert.assertEquals(productsPage.getCartBadgeCount(), 1, "Перед удалением в корзине должен быть 1 товар");
+        // Теперь удаляем товар
+        productsPage.removeFromCart("sauce-labs-backpack");
+        Assert.assertEquals(productsPage.getCartBadgeCount(), 0, "После удаления корзина должна быть пустой");
     }
 }

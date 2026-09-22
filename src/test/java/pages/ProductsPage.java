@@ -16,7 +16,14 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("1. Проверить, что открыта страница товаров")
-    public boolean isPageOpened() { return isDisplayed(ProductsPageLocators.PRODUCTS_TITLE); }
+    public boolean isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ProductsPageLocators.PRODUCTS_TITLE));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     @Step("2. Получить заголовок страницы")
     public String getPageTitle() { return getText(ProductsPageLocators.PRODUCTS_TITLE); }

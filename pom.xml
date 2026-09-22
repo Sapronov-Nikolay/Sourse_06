@@ -19,7 +19,7 @@
         <webdrivermanager.version>5.9.2</webdrivermanager.version>
         <allure.version>2.29.1</allure.version>
         <aspectj.version>1.9.22.1</aspectj.version>
-        <allure.maven.version>3.1.0</allure.maven.version>
+        <allure.maven.version>2.12.0</allure.maven.version>
         <lombok.version>1.18.48</lombok.version>
         <surefire.version>3.2.5</surefire.version>
         <compiler.version>3.13.0</compiler.version>
@@ -107,6 +107,9 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>${allure.maven.version}</version>
+                <configuration>
+                    <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
