@@ -35,7 +35,7 @@ public abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
         
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless=new");
+        options.addArguments("--headless=new");
         options.addArguments("start-maximized");
         
         // Отключаем менеджер паролей Chrome и предупреждение об утечке данных

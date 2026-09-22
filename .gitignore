@@ -21,3 +21,4 @@ screenshots/
 # Результаты тестов Allure (создаются при запуске)
 allure-results/
 allure-report/
+.allure/
