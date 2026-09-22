@@ -2,7 +2,10 @@ package pages;
 
 import io.qameta.allure.Step;
 import locators.CheckoutPageLocators;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /** Page Object страниц оформления заказа */
 public class CheckoutPage extends BasePage {
@@ -21,11 +24,19 @@ public class CheckoutPage extends BasePage {
     @Step("2. Нажать Continue")
     public void clickContinue() {
         click(CheckoutPageLocators.CONTINUE_BUTTON);
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.CONTINUE_BUTTON));
+        // JS-клик — как в CartPage.clickCheckout()
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
+        // Ждём перехода на вторую страницу
+        wait.until(ExpectedConditions.urlContains("checkout-step-two"));
     }
     
     @Step("3. Нажать Finish (завершить заказ)")
     public void clickFinish() {
-        click(CheckoutPageLocators.FINISH_BUTTON);
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.FINISH_BUTTON));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
+        // Ждём, пока браузер перейдёт на страницу "Checkout: Complete!"
+        wait.until(ExpectedConditions.urlContains("checkout-complete"));
     }
     
     @Step("4. Получить заголовок страницы")

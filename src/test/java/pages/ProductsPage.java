@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import locators.CartPageLocators;
 import locators.ProductsPageLocators;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -35,5 +36,8 @@ public class ProductsPage extends BasePage {
     }
     
     @Step("6. перейти в корзину")
-    public void switchToCart() { click(ProductsPageLocators.CART_ICON); }
+    public void switchToCart() {
+        click(CartPageLocators.CART_LINK);
+        wait.until(ExpectedConditions.urlContains("cart"));
+    }
 }

@@ -30,9 +30,11 @@ public abstract class BasePage {
 
     @Step("2. Ввести текст: {text} в поле: {locator}")
     protected void sendKeys(By locator, String text) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        element.clear();
-        element.sendKeys(text);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();      // ← фокусируем поле (ключевое для headless)
+        new org.openqa.selenium.interactions.Actions(driver)
+            .sendKeys(element, text)
+            .perform();
     }
 
     @Step("3. Получить текст элемента: {locator}")

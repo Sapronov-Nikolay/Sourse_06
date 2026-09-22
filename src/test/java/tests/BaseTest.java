@@ -1,5 +1,6 @@
 package tests;
 
+import user.User;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
@@ -42,7 +43,7 @@ public abstract class BaseTest {
     /** Авторизация стандартным пользователем для тестов корзины и checkout. */
     protected void loginAsStandardUser() {
         LoginPage loginPage = new LoginPage(driver);
-        UserFactory.User user = UserFactory.standardUser();
+        User user = UserFactory.standardUser();
         loginPage.login(user.getUsername(), user.getPassword());
     }
     
@@ -79,8 +80,6 @@ public abstract class BaseTest {
             // Добавляем тот же скриншот в Allure
             Allure.addAttachment("Screenshot: " + fileName, new ByteArrayInputStream(screenshotBytes));
             
-            System.out.println("❌ ТЕСТ УПАЛ: " + fileName);
-            System.out.println("✅ Скриншот сохранён: " + destination.getAbsolutePath());
         } catch (IOException e) {
             System.out.println("\uD83D\uDEAB Ошибка при сохранении скриншота: " + e.getMessage());
         }

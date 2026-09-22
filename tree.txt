@@ -1,13 +1,12 @@
 📁 Sourse_06/
-📊 Итог: Папок: 10, Файлов: 26, Уровней вложенности: 5
+📊 Итог: Папок: 10, Файлов: 25, Уровней вложенности: 5
 
 ├── pom.xml
 ├── src
 │   └── test
 │       ├── java
 │       │   ├── enums
-│       │   │   ├── TitleNaming.java
-│       │   │   └── mkdir
+│       │   │   └── TitleNaming.java
 │       │   ├── locators
 │       │   │   ├── CartPageLocators.java
 │       │   │   ├── CheckoutPageLocators.java

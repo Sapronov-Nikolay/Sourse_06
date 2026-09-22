@@ -44,7 +44,7 @@ public class CartTest extends BaseTest {
         softAssert.assertEquals(goods.size(), 3, "Должно быть 3 товара");
         softAssert.assertTrue(goods.contains("Sauce Labs Backpack"));
         softAssert.assertTrue(goods.contains("Test.allTheThings() T-Shirt (Red)"));
-        softAssert.assertTrue(goods.contains("Sauce Labs Bold T-Shirt"));
+        softAssert.assertTrue(goods.contains("Sauce Labs Bolt T-Shirt"));
         softAssert.assertAll();
     }
     

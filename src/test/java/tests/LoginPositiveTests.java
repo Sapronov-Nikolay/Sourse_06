@@ -29,7 +29,7 @@ public class LoginPositiveTests extends BaseTest {
             UserFactory.standardUser().getUsername(),
             UserFactory.standardUser().getPassword()
         );
-        ProductsPage productsPage = new ProductsPage(dtiver);
+        ProductsPage productsPage = new ProductsPage(driver);
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
         Assert.assertEquals(productsPage.getPageTitle(), TitleNaming.PRODUCTS.getTitle());
     }
@@ -54,7 +54,7 @@ public class LoginPositiveTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(
             UserFactory.performanceGlitchUser().getUsername(),
-            UserFactory.emptyUsernameValidPassword().getPassword()
+            UserFactory.performanceGlitchUser().getPassword()
         );
         ProductsPage productsPage = new ProductsPage(driver);
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
@@ -79,8 +79,8 @@ public class LoginPositiveTests extends BaseTest {
     public void visualUserLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(
-            UserFactory.invalidUser().getUsername(),
-            UserFactory.invalidUser().getPassword()
+            UserFactory.visualUser().getUsername(),
+            UserFactory.visualUser().getPassword()
         );
         ProductsPage productsPage = new ProductsPage(driver);
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");

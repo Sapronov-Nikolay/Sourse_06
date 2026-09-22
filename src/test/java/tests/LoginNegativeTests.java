@@ -97,9 +97,9 @@ public class LoginNegativeTests extends BaseTest {
             //  логин,              пароль,             ожидаемая ошибка
             {"",                    "",                 "Epic sadface: Username is required"},
             {"",                    "secret_sauce",     "Epic sadface: Username is required"},
-            {"standard_user",       "",                 "Epic sadface: Username is required"},
+            {"standard_user",       "",                 "Epic sadface: Password is required"},
             {"",                    "error_password",   "Epic sadface: Username is required"},
-            {"invalid_user",        "",                 "Epic sadface: Username is required"},
+            {"invalid_user",        "",                 "Epic sadface: Password is required"},
         };
     }
     @Test(
