@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.HashMap;
+import java.util.Map;
 import user.User;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
@@ -33,8 +35,17 @@ public abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
         
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+        //options.addArguments("--headless=new");
         options.addArguments("start-maximized");
+        
+        // Отключаем менеджер паролей Chrome и предупреждение об утечке данных
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);           // отключить "Save password?"
+        prefs.put("profile.password_manager_enabled", false);     // отключить менеджер паролей
+        prefs.put("profile.password_manager_leak_detection", false); // отключить "Смените пароль"
+        options.setExperimentalOption("prefs", prefs);
+        options.addArguments(
+            "--disable-features=PasswordLeakDetection");  // Отключаем фичу проверки паролей на уровне движка
         
         driver = new ChromeDriver(options);
         driver.get(PropertyReader.getProperty("saucedemo.url"));

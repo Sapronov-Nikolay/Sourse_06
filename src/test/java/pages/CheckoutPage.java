@@ -23,7 +23,6 @@ public class CheckoutPage extends BasePage {
     
     @Step("2. Нажать Continue")
     public void clickContinue() {
-        click(CheckoutPageLocators.CONTINUE_BUTTON);
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.CONTINUE_BUTTON));
         // JS-клик — как в CartPage.clickCheckout()
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
