@@ -1,20 +1,38 @@
 📁 Sourse_06/
-📊 Итог: Папок: 11, Файлов: 6, Уровней вложенности: 6
+📊 Итог: Папок: 10, Файлов: 25, Уровней вложенности: 5
 
 ├── pom.xml
-├── pom.xml.versionsBackup
-├── tree.txt
 ├── src
 │   └── test
-│       └── java
-│           └── FirstTest
-└── target
-    ├── generated-test-sources
-    │   └── test-annotations
-    ├── maven-status
-    │   └── maven-compiler-plugin
-    │       └── testCompile
-    │           └── default-testCompile
-    │               ├── createdFiles.lst
-    │               └── inputFiles.lst
-    └── test-classes
+│       ├── java
+│       │   ├── enums
+│       │   │   └── TitleNaming.java
+│       │   ├── locators
+│       │   │   ├── CartPageLocators.java
+│       │   │   ├── CheckoutPageLocators.java
+│       │   │   ├── LoginPageLocators.java
+│       │   │   └── ProductsPageLocators.java
+│       │   ├── pages
+│       │   │   ├── BasePage.java
+│       │   │   ├── CartPage.java
+│       │   │   ├── CheckoutPage.java
+│       │   │   ├── LoginPage.java
+│       │   │   └── ProductsPage.java
+│       │   ├── tests
+│       │   │   ├── BaseTest.java
+│       │   │   ├── CartTest.java
+│       │   │   ├── LoginNegativeTests.java
+│       │   │   ├── LoginPositiveTests.java
+│       │   │   └── ProductsTest.java
+│       │   ├── user
+│       │   │   ├── User.java
+│       │   │   └── UserFactory.java
+│       │   └── utils
+│       │       └── PropertyReader.java
+│       └── resources
+│           ├── config.properties
+│           ├── cross_browser.xml
+│           ├── smoke_tests.xml
+│           └── testng.xml
+├── testng.xml
+└── tree.txt
