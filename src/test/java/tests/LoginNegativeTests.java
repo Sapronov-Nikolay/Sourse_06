@@ -30,11 +30,9 @@ public class LoginNegativeTests extends BaseTest {
     @Story("Вариант валидных данных, которым нельзя")
     @Severity(SeverityLevel.BLOCKER)
     public void lockedOutUserTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(
-            UserFactory.lockedOutUser().getUsername(),
-            UserFactory.lockedOutUser().getPassword()
-        );
+        User user = UserFactory.lockedOutUser();
+        loginAs(user);
+
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Сообщение об ошибке не появилось");
         Assert.assertEquals(loginPage.getErrorMessageText(),
             "Epic sadface: Sorry, this user has been locked out.");
@@ -45,9 +43,8 @@ public class LoginNegativeTests extends BaseTest {
     @Story("Валидация неверного логина с верным паролем")
     @Severity(SeverityLevel.CRITICAL)
     public void invalidUsernameValidPasswordTest() {
-        LoginPage loginPage = new LoginPage(driver);
         User user = UserFactory.invalidUsernameValidPassword();
-        loginPage.login(user.getUsername(), user.getPassword());
+        loginAs(user);
         
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(),"Сообщение об ошибке не появилось");
         Assert.assertEquals(loginPage.getErrorMessageText(),
@@ -75,10 +72,7 @@ public class LoginNegativeTests extends BaseTest {
     @Story("Валидный логин и неверный пароль")
     @Severity(SeverityLevel.CRITICAL)
     public void validUserWrongPasswordTest(User user) {
-        LoginPage loginPage = new LoginPage(driver);
-        
-        // Берём валидный логин из фабрики, но подменяем пароль на неверный
-        loginPage.login(user.getUsername(), "error_password");
+        loginAs(user.getUsername(), "error_password");
         
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(),
             "Ошибка не появилась для пользователя: " + user.getUsername());
@@ -102,15 +96,16 @@ public class LoginNegativeTests extends BaseTest {
             {"invalid_user",        "",                 "Epic sadface: Password is required"},
         };
     }
+    
     @Test(
         description = "Пустые и комбинированные поля",
         dataProvider = "emptyFieldCombinations",
         priority = 5
     )
+    
     @Story("Валидация пустых и комбинированных полей")
     public void emptyAndCombinedFieldsTest(String username, String password, String expectedError) {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(username, password);
+        loginAs(username, password);
         
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(),
             "Ошибка не появилась. Логин: '" + username + "', пароль: '" + password + "'");

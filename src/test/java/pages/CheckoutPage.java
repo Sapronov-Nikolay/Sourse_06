@@ -24,17 +24,16 @@ public class CheckoutPage extends BasePage {
     @Step("2. Нажать Continue")
     public void clickContinue() {
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.CONTINUE_BUTTON));
-        // JS-клик — как в CartPage.clickCheckout()
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
-        // Ждём перехода на вторую страницу
+        button.click();
+        
         wait.until(ExpectedConditions.urlContains("checkout-step-two"));
     }
     
     @Step("3. Нажать Finish (завершить заказ)")
     public void clickFinish() {
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.FINISH_BUTTON));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
-        // Ждём, пока браузер перейдёт на страницу "Checkout: Complete!"
+        button.click();
+        
         wait.until(ExpectedConditions.urlContains("checkout-complete"));
     }
     

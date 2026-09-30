@@ -24,12 +24,8 @@ public class LoginPositiveTests extends BaseTest {
     @Story("Вход валидного standard_user")
     @Severity(SeverityLevel.CRITICAL)
     public void standardUserLoginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(
-            UserFactory.standardUser().getUsername(),
-            UserFactory.standardUser().getPassword()
-        );
-        ProductsPage productsPage = new ProductsPage(driver);
+        loginAs(UserFactory.standardUser());
+        
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
         Assert.assertEquals(productsPage.getPageTitle(), TitleNaming.PRODUCTS.getTitle());
     }
@@ -38,12 +34,8 @@ public class LoginPositiveTests extends BaseTest {
     @Story("Вход валидного problem_user")
     @Severity(SeverityLevel.CRITICAL)
     public void problemUserLoginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(
-            UserFactory.problemUser().getUsername(),
-            UserFactory.problemUser().getPassword()
-        );
-        ProductsPage productsPage = new ProductsPage(driver);
+        loginAs(UserFactory.problemUser());
+        
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
     }
     
@@ -51,12 +43,8 @@ public class LoginPositiveTests extends BaseTest {
     @Story("Вход валидного performance_glitch_user")
     @Severity(SeverityLevel.CRITICAL)
     public void performanceGlitchUserLoginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(
-            UserFactory.performanceGlitchUser().getUsername(),
-            UserFactory.performanceGlitchUser().getPassword()
-        );
-        ProductsPage productsPage = new ProductsPage(driver);
+        loginAs(UserFactory.performanceGlitchUser());
+        
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
     }
     
@@ -64,12 +52,8 @@ public class LoginPositiveTests extends BaseTest {
     @Story("Вход валидного error_user")
     @Severity(SeverityLevel.CRITICAL)
     public void errorUserLoginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(
-            UserFactory.errorUser().getUsername(),
-            UserFactory.errorUser().getPassword()
-        );
-        ProductsPage productsPage = new ProductsPage(driver);
+        loginAs(UserFactory.errorUser());
+        
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
     }
     
@@ -77,12 +61,8 @@ public class LoginPositiveTests extends BaseTest {
     @Story("Вход валидного visual_user")
     @Severity(SeverityLevel.CRITICAL)
     public void visualUserLoginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(
-            UserFactory.visualUser().getUsername(),
-            UserFactory.visualUser().getPassword()
-        );
-        ProductsPage productsPage = new ProductsPage(driver);
+        loginAs(UserFactory.visualUser());
+        
         Assert.assertTrue(productsPage.isPageOpened(), "Страница Products не открылась");
     }
 }

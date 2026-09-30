@@ -20,7 +20,6 @@ public class ProductsTest extends BaseTest {
     public void addProductToCartTest() {
         loginAsStandardUser();
         
-        ProductsPage productsPage = new ProductsPage(driver);
         productsPage.addToCart("sauce-labs-backpack");
         
         Assert.assertEquals(productsPage.getCartBadgeCount(), 1, "В корзине должен быть 1 товар");
@@ -32,12 +31,14 @@ public class ProductsTest extends BaseTest {
     public void removeProductFromCartTest() {
         loginAsStandardUser();
         
-        ProductsPage productsPage = new ProductsPage(driver);
         // Сначала добавлением - чтобы кнопка "Add to cart" сменилась на "Remove"
         productsPage.addToCart("sauce-labs-backpack");
-        Assert.assertEquals(productsPage.getCartBadgeCount(), 1, "Перед удалением в корзине должен быть 1 товар");
+        Assert.assertEquals(productsPage.getCartBadgeCount(), 1,
+            "Перед удалением в корзине должен быть 1 товар");
+        
         // Теперь удаляем товар
         productsPage.removeFromCart("sauce-labs-backpack");
-        Assert.assertEquals(productsPage.getCartBadgeCount(), 0, "После удаления корзина должна быть пустой");
+        Assert.assertEquals(productsPage.getCartBadgeCount(), 0,
+            "После удаления корзина должна быть пустой");
     }
 }

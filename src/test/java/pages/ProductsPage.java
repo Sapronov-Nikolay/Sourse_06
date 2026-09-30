@@ -26,13 +26,19 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("2. Получить заголовок страницы")
-    public String getPageTitle() { return getText(ProductsPageLocators.PRODUCTS_TITLE); }
+    public String getPageTitle() {
+        return getText(ProductsPageLocators.PRODUCTS_TITLE);
+    }
     
     @Step("3. Добавить товар '{slug}' в корзину")
-    public void addToCart(String slug) { click(ProductsPageLocators.addToCartButton(slug)); }
+    public void addToCart(String slug) {
+        click(ProductsPageLocators.addToCartButton(slug));
+    }
     
     @Step("4. Удалить товар '{slug}' из корзины")
-    public void removeFromCart(String slug) { click(ProductsPageLocators.removeButton(slug)); }
+    public void removeFromCart(String slug) {
+        click(ProductsPageLocators.removeButton(slug));
+    }
     
     @Step("5. Получить количество товаров в корзине")
     public int getCartBadgeCount() {

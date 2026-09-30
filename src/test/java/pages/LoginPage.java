@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import locators.LoginPageLocators;
 import org.openqa.selenium.WebDriver;
 
-
 /**
  * Класс, который описывает страницу логина (Page Object Model).
  * Суть этого в том, что мы храним локаторы (селекторы элементов) и методы взаимодействия с ними в одном месте.
@@ -24,7 +23,6 @@ public class LoginPage extends BasePage {
     public void enterPassword(String password) {
         sendKeys(LoginPageLocators.PASSWORD_FIELD, password);
     }
-    
     
     @Step("3. Нажать кнопку входа {login-button}")
     public void clickLoginButton() {

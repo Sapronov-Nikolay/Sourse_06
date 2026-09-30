@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.PropertyReader;
 import java.time.Duration;
 
 /**
@@ -16,7 +15,6 @@ public abstract class BasePage {
     protected final WebDriver driver;
     protected final WebDriverWait wait;
     
-    public static final String BASE_URL = PropertyReader.getProperty("saucedemo.url");
     
     protected BasePage(WebDriver driver) {
         this.driver = driver;
@@ -31,10 +29,8 @@ public abstract class BasePage {
     @Step("2. Ввести текст: {text} в поле: {locator}")
     protected void sendKeys(By locator, String text) {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        element.click();      // ← фокусируем поле (ключевое для headless)
-        new org.openqa.selenium.interactions.Actions(driver)
-            .sendKeys(element, text)
-            .perform();
+        element.click();        // ← фокусируем поле (ключевое для headless)
+        element.sendKeys(text); // Вводим текст напрямую
     }
 
     @Step("3. Получить текст элемента: {locator}")

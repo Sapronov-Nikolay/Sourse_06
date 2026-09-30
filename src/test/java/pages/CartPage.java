@@ -37,10 +37,10 @@ public class CartPage extends BasePage {
     public void clickCheckout() {
         // Сначала убеждаемся, что корзина загрузилась
         wait.until(ExpectedConditions.visibilityOfElementLocated(CartPageLocators.CART_LIST));
-        // Кликаем через JavaScript — надёжнее, чем обычный click()
+        
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(CartPageLocators.CHECKOUT_BUTTON));
         ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
-        // Ждём перехода
+        
         wait.until(ExpectedConditions.urlContains("checkout-step-one"));
     }
 }

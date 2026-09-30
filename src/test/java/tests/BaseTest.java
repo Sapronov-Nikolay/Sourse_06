@@ -1,8 +1,5 @@
 package tests;
 
-import java.util.HashMap;
-import java.util.Map;
-import user.User;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
@@ -13,7 +10,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.CartPage;
+import pages.CheckoutPage;
 import pages.LoginPage;
+import pages.ProductsPage;
+import user.User;
 import user.UserFactory;
 import utils.PropertyReader;
 
@@ -23,11 +24,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Базовый класс для всех тестов. setUp() готовит браузер перед тестом, tearDown() закрывает его после теста. */
 public abstract class BaseTest {
 
     protected WebDriver driver;
+    
+    // Page Object'ы создаются один раз в BaseTest
+    protected LoginPage loginPage;
+    protected ProductsPage productsPage;
+    protected CartPage cartPage;
+    protected CheckoutPage checkoutPage;
     
     /** Перед тестами */
     @BeforeMethod
@@ -49,13 +58,24 @@ public abstract class BaseTest {
         
         driver = new ChromeDriver(options);
         driver.get(PropertyReader.getProperty("saucedemo.url"));
+        
+        // Создаём Page Object'ы после открытия сайта
+        loginPage = new LoginPage(driver);
+        productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
     
-    /** Авторизация стандартным пользователем для тестов корзины и checkout. */
-    protected void loginAsStandardUser() {
-        LoginPage loginPage = new LoginPage(driver);
-        User user = UserFactory.standardUser();
+    protected void loginAs(User user) {
         loginPage.login(user.getUsername(), user.getPassword());
+    }
+    
+    protected void loginAs(String username, String password) {
+        loginPage.login(username, password);
+    }
+    
+    protected void loginAsStandardUser() {
+        loginAs(UserFactory.standardUser());
     }
     
     /** После тестов */

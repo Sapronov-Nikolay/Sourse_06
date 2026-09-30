@@ -9,9 +9,6 @@ import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.CartPage;
-import pages.CheckoutPage;
-import pages.ProductsPage;
 
 import java.util.List;
 
@@ -29,13 +26,11 @@ public class CartTest extends BaseTest {
     public void checkGoodsInCartTest() {
         loginAsStandardUser();  // Логинимся стандартным пользователем из BaseTest
         
-        ProductsPage productsPage = new ProductsPage(driver);
         productsPage.addToCart("sauce-labs-backpack");
         productsPage.addToCart("test.allthethings()-t-shirt-(red)");
         productsPage.addToCart("sauce-labs-bolt-t-shirt");
         productsPage.switchToCart();
         
-        CartPage cartPage = new CartPage(driver);
         Assert.assertTrue(cartPage.isPageOpened(), "Корзина не открылась");
         
         List<String> goods = cartPage.getProductsNames();
@@ -55,14 +50,11 @@ public class CartTest extends BaseTest {
         loginAsStandardUser();  // Логинимся стандартным пользователем из BaseTest
         
         // Добавляем один товар и переходим в корзину.
-        ProductsPage productsPage = new ProductsPage(driver);
         productsPage.addToCart("sauce-labs-backpack");
         productsPage.switchToCart();
         
-        CartPage cartPage = new CartPage(driver);
         cartPage.clickCheckout();   // Нажимаем на кнопку Checkout на странице корзины
         
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
         Assert.assertEquals(checkoutPage.getPageTitle(), TitleNaming.CHECKOUT_INFO.getTitle());
         
         checkoutPage.fillCheckoutInfo(FIRST_NAME, LAST_NAME, POSTAL_CODE);
@@ -73,5 +65,4 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(checkoutPage.getPageTitle(), TitleNaming.CHECKOUT_COMPLETE.getTitle());
         Assert.assertEquals(checkoutPage.getCompleteHeaderText(), "Thank you for your order!");
     }
-    
 }
