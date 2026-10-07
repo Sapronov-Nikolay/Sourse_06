@@ -12,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-@Epic("Swag Lags")
+@Epic("Swag Labs")
 @Feature("Cart & Checkout")
 public class CartTest extends BaseTest {
     
@@ -26,10 +26,11 @@ public class CartTest extends BaseTest {
     public void checkGoodsInCartTest() {
         loginAsStandardUser();  // Логинимся стандартным пользователем из BaseTest
         
-        productsPage.addToCart("sauce-labs-backpack");
-        productsPage.addToCart("test.allthethings()-t-shirt-(red)");
-        productsPage.addToCart("sauce-labs-bolt-t-shirt");
-        productsPage.switchToCart();
+        productsPage
+            .addToCart("sauce-labs-backpack")
+            .addToCart("test.allthethings()-t-shirt-(red)")
+            .addToCart("sauce-labs-bolt-t-shirt")
+            .switchToCart();
         
         Assert.assertTrue(cartPage.isPageOpened(), "Корзина не открылась");
         
@@ -50,18 +51,24 @@ public class CartTest extends BaseTest {
         loginAsStandardUser();  // Логинимся стандартным пользователем из BaseTest
         
         // Добавляем один товар и переходим в корзину.
-        productsPage.addToCart("sauce-labs-backpack");
-        productsPage.switchToCart();
+        productsPage
+            .addToCart("sauce-labs-backpack")
+            .switchToCart();
         
         cartPage.clickCheckout();   // Нажимаем на кнопку Checkout на странице корзины
         
         Assert.assertEquals(checkoutPage.getPageTitle(), TitleNaming.CHECKOUT_INFO.getTitle());
         
-        checkoutPage.fillCheckoutInfo(FIRST_NAME, LAST_NAME, POSTAL_CODE);
-        checkoutPage.clickContinue();
+        checkoutPage
+            .fillCheckoutInfo(FIRST_NAME, LAST_NAME, POSTAL_CODE)
+            .clickContinue();
+        
         Assert.assertEquals(checkoutPage.getPageTitle(), TitleNaming.CHECKOUT_OVERVIEW.getTitle());
         
-        checkoutPage.clickFinish();
+        String completeHeader = checkoutPage
+            .clickFinish()
+            .getCompleteHeaderText();
+            
         Assert.assertEquals(checkoutPage.getPageTitle(), TitleNaming.CHECKOUT_COMPLETE.getTitle());
         Assert.assertEquals(checkoutPage.getCompleteHeaderText(), "Thank you for your order!");
     }

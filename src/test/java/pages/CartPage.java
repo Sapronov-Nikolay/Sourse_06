@@ -34,7 +34,7 @@ public class CartPage extends BasePage {
     }
     
     @Step("3. Перейти к оформлению заказа")
-    public void clickCheckout() {
+    public CartPage clickCheckout() {
         // Сначала убеждаемся, что корзина загрузилась
         wait.until(ExpectedConditions.visibilityOfElementLocated(CartPageLocators.CART_LIST));
         
@@ -42,5 +42,6 @@ public class CartPage extends BasePage {
         ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
         
         wait.until(ExpectedConditions.urlContains("checkout-step-one"));
+        return this;
     }
 }

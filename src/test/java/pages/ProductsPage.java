@@ -31,13 +31,15 @@ public class ProductsPage extends BasePage {
     }
     
     @Step("3. Добавить товар '{slug}' в корзину")
-    public void addToCart(String slug) {
+    public ProductsPage addToCart(String slug) {
         click(ProductsPageLocators.addToCartButton(slug));
+        return this;
     }
     
     @Step("4. Удалить товар '{slug}' из корзины")
-    public void removeFromCart(String slug) {
+    public ProductsPage removeFromCart(String slug) {
         click(ProductsPageLocators.removeButton(slug));
+        return this;
     }
     
     @Step("5. Получить количество товаров в корзине")
@@ -49,8 +51,9 @@ public class ProductsPage extends BasePage {
     }
     
     @Step("6. перейти в корзину")
-    public void switchToCart() {
+    public ProductsPage switchToCart() {
         click(CartPageLocators.CART_LINK);
         wait.until(ExpectedConditions.urlContains("cart"));
+        return this;
     }
 }

@@ -15,25 +15,29 @@ public class LoginPage extends BasePage {
     }
 
     @Step("1. Ввести логин: {username}")
-    public void enterUsername(String username) {
+    public LoginPage enterUsername(String username) {
         sendKeys(LoginPageLocators.USERNAME_FIELD, username);
+        return this;
     }
 
     @Step("2. Ввести пароль: {password}")
-    public void enterPassword(String password) {
+    public LoginPage enterPassword(String password) {
         sendKeys(LoginPageLocators.PASSWORD_FIELD, password);
+        return this;
     }
     
     @Step("3. Нажать кнопку входа {login-button}")
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
         click(LoginPageLocators.LOGIN_BUTTON);
+        return this;
     }
 
     /** SMART-METHOD (комбинированный): вводим логин, пароль и кликаем. */
-    public void login(String username, String password) {
+    public LoginPage login(String username, String password) {
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();
+        return this;
     }
 
     public boolean isErrorMessageDisplayed() {
